@@ -10,6 +10,7 @@ import com.example.technologies.repository.CandidateRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,13 +29,14 @@ class CandidateServiceTest {
     @Autowired
     private CandidateService candidateService;
 
-    @AfterEach
-    void clean() {
-        candidateRepository.deleteAll();
-    }
+   // @AfterEach
+    //void clean() {
+    //    candidateRepository.deleteAll();
+    //}
 
     @Test
     void save() {
+        candidateRepository.deleteAll();
         Candidate candidate = Candidate.builder()
                 .name("Gena")
                 .build();
@@ -48,8 +50,8 @@ class CandidateServiceTest {
 
     @Test
     void update() {
+        candidateRepository.deleteAll();
         Candidate candidate = Candidate.builder()
-                .id(1L)
                 .name("Gena")
                 .technologies(new ArrayList<>())
                 .build();
@@ -60,8 +62,8 @@ class CandidateServiceTest {
 
     @Test
     void deleteById() {
+        candidateRepository.deleteAll();
         Candidate candidate = Candidate.builder()
-                .id(1L)
                 .name("Gena")
                 .technologies(new ArrayList<>())
                 .build();
@@ -72,8 +74,8 @@ class CandidateServiceTest {
 
     @Test
     void getAll() {
+        candidateRepository.deleteAll();
         Candidate candidate = Candidate.builder()
-                .id(1L)
                 .name("Gena")
                 .technologies(new ArrayList<>())
                 .build();
@@ -85,8 +87,8 @@ class CandidateServiceTest {
 
     @Test
     void getAllCandidateWithTechnology() {
+        candidateRepository.deleteAll();
         Technology technology = Technology.builder()
-                .level(1)
                 .name("Java")
                 .build();
         Candidate candidate = Candidate.builder()

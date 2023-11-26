@@ -1,9 +1,6 @@
 package com.example.technologies.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.Objects;
 @Setter
 @Builder
 @Entity
+@Table(name = "users")
 public class User {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +21,7 @@ public class User {
 
     private String name;
 
+    @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
     @Override

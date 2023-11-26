@@ -1,6 +1,7 @@
 package com.example.technologies.service;
 
 import com.example.technologies.model.Address;
+import com.example.technologies.model.Candidate;
 import com.example.technologies.model.Order;
 import com.example.technologies.repository.AddressRepository;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,10 @@ public class AddressServiceImpl {
 
     public AddressServiceImpl(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
+    }
+
+    public Address save(Address address) {
+        return addressRepository.save(address);
     }
 
     public String getAddressPay() {

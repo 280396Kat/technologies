@@ -1,9 +1,6 @@
 package com.example.technologies.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Objects;
@@ -14,6 +11,7 @@ import java.util.Objects;
 @Setter
 @Builder
 @Entity
+@Table(name = "orders")
 public class Order {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +21,12 @@ public class Order {
     private String name;
 
     private boolean isPay;
+
+    @ManyToOne
+    private Address address;
+
+    @ManyToOne
+    private User user;
 
     @Override
     public boolean equals(Object o) {
