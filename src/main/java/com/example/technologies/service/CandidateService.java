@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CandidateService implements CandidateServiceImpl{
@@ -49,15 +50,12 @@ public class CandidateService implements CandidateServiceImpl{
 
     @Override
     public List<CandidateDto> getAll() {
-        List<Candidate> candidatesList = candidateRepository.findAll();
-        List<CandidateDto> candidateDto = new ArrayList<>();
-        for (Candidate tmp : candidatesList) {
-            CandidateDto candidateDto1 = new CandidateDto();
-            candidateDto1.setName(tmp.getName());
-            candidateDto1.setId(tmp.getId());
-            candidateDto.add(candidateDto1);
-        }
-        return candidateDto;
+        return candidateRepository.findAll().stream()
+                .map(candidate -> CandidateDto.builder()
+                        .id(candidate.getId())
+                        .name(candidate.getName())
+                        .build())
+                .collect(Collectors.toList());
     }
 
     @Override
