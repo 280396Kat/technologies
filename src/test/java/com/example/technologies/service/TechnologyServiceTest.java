@@ -6,7 +6,6 @@ import com.example.technologies.dto.TechnologyWithCandidateDto;
 import com.example.technologies.model.Candidate;
 import com.example.technologies.model.Technology;
 import com.example.technologies.repository.TechnologyRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,8 +15,6 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @ActiveProfiles("test")
 @SpringBootTest(classes = TechnologiesApplication.class)
 class TechnologyServiceTest {
@@ -25,7 +22,7 @@ class TechnologyServiceTest {
     private TechnologyRepository technologyRepository;
 
     @Autowired
-    private TechnologyService technologyService;
+    private TechnologyServiceImpl technologyService;
 
     @AfterEach
     void clean() {

@@ -3,7 +3,7 @@ package com.example.technologies.controller;
 import com.example.technologies.dto.CandidateDto;
 import com.example.technologies.dto.CandidateWithTechnologyDto;
 import com.example.technologies.model.Candidate;
-import com.example.technologies.service.CandidateService;
+import com.example.technologies.service.CandidateServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +14,10 @@ import java.util.List;
 @RestController
 public class CandidateController {
 
-    private final CandidateService candidateService;
+    private final CandidateServiceImpl candidateService;
 
     @Autowired
-    public CandidateController(CandidateService candidateService) {
+    public CandidateController(CandidateServiceImpl candidateService) {
         this.candidateService = candidateService;
     }
 

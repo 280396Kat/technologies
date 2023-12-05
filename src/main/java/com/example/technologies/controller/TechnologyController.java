@@ -1,10 +1,9 @@
 package com.example.technologies.controller;
 
-import com.example.technologies.dto.CandidateWithTechnologyDto;
 import com.example.technologies.dto.TechnologyDto;
 import com.example.technologies.dto.TechnologyWithCandidateDto;
 import com.example.technologies.model.Technology;
-import com.example.technologies.service.TechnologyService;
+import com.example.technologies.service.TechnologyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +14,10 @@ import java.util.List;
 @RestController
 public class TechnologyController {
 
-    private final TechnologyService technologyService;
+    private final TechnologyServiceImpl technologyService;
 
     @Autowired
-    public TechnologyController(TechnologyService technologyService) {
+    public TechnologyController(TechnologyServiceImpl technologyService) {
         this.technologyService = technologyService;
     }
 

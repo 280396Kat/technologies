@@ -11,6 +11,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Builder
+@ToString
 @Entity
 public class Address {
 
@@ -20,7 +21,7 @@ public class Address {
 
     private String name;
 
-    @OneToMany(mappedBy = "address")
+    @OneToMany(mappedBy = "address", fetch = FetchType.EAGER)
     private List<Order> orders;
 
     @Override

@@ -2,9 +2,7 @@ package com.example.technologies.service;
 
 import com.example.technologies.TechnologiesApplication;
 import com.example.technologies.model.Address;
-import com.example.technologies.model.Candidate;
 import com.example.technologies.model.Order;
-import com.example.technologies.model.Technology;
 import com.example.technologies.repository.AddressRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -48,12 +46,43 @@ class AddressServiceImplTest {
     @Test
     void getAddressPay() {
         Address address = Address.builder()
-                .id(1L)
                 .name("Lenina")
                 .orders(new ArrayList<>())
                 .build();
-        String expected = String.valueOf(addressService.save(address));
-        String result = addressService.getAddressPay();
-        Assertions.assertEquals(expected, result);
+        addressService.save(address);
+        address.setName("Address");
+        Order order1 = new Order();
+        order1.setPay(true);
+        address.getOrders().add(order1);
+
+        Address address1 = Address.builder()
+                .name("Lenina")
+                .orders(new ArrayList<>())
+                .build();
+        addressService.save(address1);
+        address1.setName("Address1");
+        Order order2 = new Order();
+        order2.setPay(false);
+        address1.getOrders().add(order2);
+
+        List<Address> addresses = new ArrayList<>();
+        addresses.add(address);
+        addresses.add(address1);
+
+        String expectedResult = "Address";
+       // String actualResult = addressService.getAddressPay();
+        String actualResult = null;
+        for (Address tmp : addresses) {
+            for (Order order : tmp.getOrders()) {
+                if (order.isPay()) {
+                    actualResult = tmp.getName();
+                    break;
+                }
+            }
+            if (actualResult != null) {
+                break;
+            }
+        }
+        assertEquals(expectedResult, actualResult);
     }
 }

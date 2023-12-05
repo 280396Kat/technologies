@@ -3,14 +3,10 @@ package com.example.technologies.service;
 import com.example.technologies.TechnologiesApplication;
 import com.example.technologies.dto.CandidateDto;
 import com.example.technologies.dto.CandidateWithTechnologyDto;
-import com.example.technologies.dto.TechnologyDto;
 import com.example.technologies.model.Candidate;
 import com.example.technologies.model.Technology;
 import com.example.technologies.repository.CandidateRepository;
-import jakarta.persistence.EntityNotFoundException;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,15 +15,13 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @ActiveProfiles("test")
 @SpringBootTest(classes = TechnologiesApplication.class)
 class CandidateServiceTest {
     @Autowired
     private CandidateRepository candidateRepository;
     @Autowired
-    private CandidateService candidateService;
+    private CandidateServiceImpl candidateService;
 
    // @AfterEach
     //void clean() {
